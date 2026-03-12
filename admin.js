@@ -715,29 +715,42 @@ if (maintenanceForm) {
             alert('❌ Error: ' + error.message);
         } finally {
             hideLoader();
-        }
-    });
-}
+// admin.js में इस लाइन को ढूंढें और बदलें
+const loginForm = document.getElementById('adminLoginForm'); // यहाँ 'adminLoginForm' कर दिया है
 
-// ===== PASSWORD MANAGER =====
-const passwordForm = document.getElementById('passwordForm');
-if (passwordForm) {
-    passwordForm.addEventListener('submit', async (e) => {
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const newPassword = document.getElementById('newPassword').value;
         
+        // पक्का करें कि ये IDs भी HTML से मैच कर रही हैं
+        const emailInput = document.getElementById('adminEmail');
+        const passwordInput = document.getElementById('adminPassword');
+        const errorDiv = document.getElementById('adminLoginError');
+        
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
         showLoader();
         try {
-            const hash = await hashPassword(newPassword);
-            await setDoc(doc(db, 'settings', 'loginPassword'), { hash });
-            alert('✅ Password updated!\nNew password: ' + newPassword);
-            document.getElementById('newPassword').value = '';
+            // Firebase Login
+            await signInWithEmailAndPassword(auth, email, password);
+            
+            // लॉगिन के बाद क्या दिखाना है
+            const loginView = document.getElementById('adminLoginView');
+            const dashboard = document.getElementById('adminDashboard');
+            
+            if (loginView) loginView.classList.add('hidden');
+            if (dashboard) dashboard.classList.remove('hidden');
+            
+            await loadAllData();
+            console.log("✅ कुणाल भाई, लॉगिन हो गया!");
+            
         } catch (error) {
-            alert('❌ Error: ' + error.message);
+            errorDiv.textContent = '❌ गलत ईमेल या पासवर्ड!';
+            errorDiv.classList.remove('hidden');
+            console.error('Login error:', error);
         } finally {
             hideLoader();
         }
     });
 }
-
-console.log('🔥 NOVRA X Admin Panel Ready!');
