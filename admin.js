@@ -5,14 +5,13 @@ import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, ge
 
 // Firebase Config
 const firebaseConfig = {
-  apiKey: "AIzaSyDDQP9P-d7OA2bda3hzJOTz0hkEPicZNAY",
-  authDomain: "ff-emote-vip-kunal.firebaseapp.com",
-  databaseURL: "https://ff-emote-vip-kunal-default-rtdb.firebaseio.com",
-  projectId: "ff-emote-vip-kunal",
-  storageBucket: "ff-emote-vip-kunal.firebasestorage.app",
-  messagingSenderId: "263235103096",
-  appId: "1:263235103096:web:e5a5fc4e6104640f01408d",
-  measurementId: "G-ZXQ6T5VWGW"
+  apiKey: "AIzaSyBVYiwqTdMWUdv_OSFRqnEw2gIBHhCI-Lc",
+  authDomain: "emotetutorial.firebaseapp.com",
+  projectId: "emotetutorial",
+  storageBucket: "emotetutorial.firebasestorage.app",
+  messagingSenderId: "1071966507872",
+  appId: "1:1071966507872:web:05115fb1e4594806f74405",
+  measurementId: "G-YHGBWLYRDK"
 };
 
 
